@@ -1,0 +1,13 @@
+# Ladda aldrig upp privata nycklar
+*.pem
+*.ppk
+*.key
+
+# AWS-uppgifter
+.aws/
+credentials
+
+# OS-filer
+.DS_Store
+Thumbs.db
+desktop.ini

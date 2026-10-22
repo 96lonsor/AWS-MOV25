@@ -6,8 +6,8 @@
 
 | Vecka | Ämne | Länk |
 |-------|------|------|
-| 43 | EC2, Apache och Novatrix webbsida | [V43](V43/README.md) |
+| 42 | EC2, Apache och Novatrix webbsida | [V42](V42/README.md) |
 
-## Vecka 43 – EC2, Apache och Novatrix webbsida
+## Vecka 42 – EC2, Apache och Novatrix webbsida
 
-Startade en EC2-instans med Amazon Linux, installerade Apache och lade upp Novatrix webbsida så att den syns på instansens publika IP. Satte också upp en månadsbudget med larm. Mer finns i [V43/README.md](V43/README.md).
+Startade en EC2-instans med Amazon Linux, installerade Apache och lade upp Novatrix webbsida så att den syns på instansens publika IP. Satte också upp en månadsbudget med larm. Mer finns i [V42/README.md](V42/README.md).

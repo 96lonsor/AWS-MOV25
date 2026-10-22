@@ -1,4 +1,4 @@
-# Vecka 43 – EC2, Apache och Novatrix webbsida
+# Vecka 42 – EC2, Apache och Novatrix webbsida
 
 Luna Lindström, AWS-MOV25
 

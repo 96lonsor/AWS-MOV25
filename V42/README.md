@@ -174,6 +174,14 @@ Jag har MFA på root-kontot och inga access keys kopplade till det.
 
 ![IAM](bilder/12-iam-mfa.png)
 
+## Städning efter labben
+
+När jag är klar för dagen stoppar jag instansen via Instance state → Stop. Stop stänger av servern men den finns kvar och kan startas igen. Terminate hade raderat den för gott, och det vill jag inte eftersom vi bygger vidare på samma miljö nästa vecka.
+
+En stoppad instans kostar inget för datorkraften, men disken (EBS) finns kvar och räknas fortfarande. Den publika IP-adressen kan bli en ny nästa gång jag startar instansen, så 56.228.21.3 gäller bara just nu. Skärmbilden på sidan visar att den fungerade.
+
+Key pair (novatrix-key) och security group (launch-wizard-1) behåller jag till nästa vecka.
+
 ## Reflektion
 
 Det mesta gick smidigt. Det enda som strulade var första SSH-försöket, där jag råkade få med en platshållare i stället för den riktiga IP-adressen. Det var lätt att se i felmeddelandet. Det var också bra att testa sidan med curl på servern först, så att jag visste att Apache fungerade innan jag kollade utifrån.

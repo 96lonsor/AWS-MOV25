@@ -6,13 +6,21 @@ Luna Lindström, AWS-MOV25
 
 Den här veckan har jag satt upp en virtuell server i AWS åt Novatrix och lagt upp en enkel webbsida på den. Sidan går att nå på http://56.228.21.3.
 
+## Innehåll
+
+1. [Kursrepo på GitHub](#delmoment-1--kursrepo-på-github)
+2. [Starta en EC2-instans](#delmoment-2--starta-en-ec2-instans)
+3. [Ansluta med SSH och installera webbserver](#delmoment-3--ansluta-med-ssh-och-installera-webbserver)
+4. [Lägga upp webbsidan](#delmoment-4--lägga-upp-webbsidan)
+5. [Verifiera](#delmoment-5--verifiera)
+6. [Kostnadskontroll](#delmoment-6--kostnadskontroll)
+
 ## Delmoment 1 – Kursrepo på GitHub
 
 Jag skapade ett publikt repo som heter AWS-MOV25. Det är samma upplägg som jag hade i Azure-kursen, med en mapp per vecka och en README på startsidan med namn och innehåll.
 
 Repo: https://github.com/96lonsor/AWS-MOV25
 
-![GitHub-repo](bilder/01-github-repo.png)
 
 ## Delmoment 2 – Starta en EC2-instans
 
@@ -56,9 +64,26 @@ icacls .\novatrix-key.pem /grant:r "$($env:USERNAME):R"
 ssh -i .\novatrix-key.pem ec2-user@56.228.21.3
 ```
 
-Första gången frågar SSH om man litar på servern, och där svarade jag yes.
+Första gången frågar SSH om man litar på servern, och där svarade jag yes. Utdrag från terminalen:
 
-![SSH-anslutning](bilder/06-ssh.png)
+```text
+The authenticity of host '56.228.21.3 (56.228.21.3)' can't be established.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '56.228.21.3' (ED25519) to the list of known hosts.
+   ,     #_
+   ~\_  ####_        Amazon Linux 2023
+  ~~  \_#####\
+  ~~     \###|
+  ~~       \#/ ___   https://aws.amazon.com/linux/amazon-linux-2023
+   ~~       V~' '->
+    ~~~         /
+      ~~._.   _/
+         _/ _/
+       _/m/'
+[ec2-user@ip-172-31-41-168 ~]$
+```
+
+Prompten slutar med `$` och visar ec2-user, så jag är inloggad på servern.
 
 Väl inne installerade jag Apache (httpd) och såg till att den startar automatiskt om servern startas om. Kommandona finns också i [kod/install-webserver.sh](kod/install-webserver.sh).
 
@@ -70,9 +95,17 @@ sudo systemctl enable httpd
 sudo systemctl status httpd --no-pager
 ```
 
-Status visar active (running) och att den lyssnar på port 80.
+Utdrag från statuskommandot:
 
-![httpd körs](bilder/07-httpd-status.png)
+```text
+● httpd.service - The Apache HTTP Server
+     Loaded: loaded (/usr/lib/systemd/system/httpd.service; enabled; preset: disabled)
+     Active: active (running) since Thu 2026-10-22 09:30:41 UTC; 517ms ago
+   Main PID: 44864 (httpd)
+     Status: "Started, listening on: port 80"
+```
+
+Active (running) betyder att Apache är igång, enabled att den startar automatiskt efter en omstart, och den lyssnar på port 80.
 
 ## Delmoment 4 – Lägga upp webbsidan
 
@@ -96,7 +129,22 @@ ls -l /var/www/html/
 curl http://localhost
 ```
 
-![index.html på servern](bilder/08-index-html.png)
+Utdrag från terminalen:
+
+```text
+total 4
+-rw-r--r--. 1 root root 991 Oct 22 09:35 index.html
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  ...
+    <h1>Novatrix AB</h1>
+  ...
+</html>
+```
+
+Filen finns och curl får tillbaka hela sidan, så Apache skickar ut den.
 
 ## Delmoment 5 – Verifiera
 

@@ -6,6 +6,9 @@
 # AWS-uppgifter
 .aws/
 credentials
+*accessKeys.csv
+*credentials.csv
+.env
 
 # OS-filer
 .DS_Store

@@ -236,4 +236,10 @@ Servern kan alltså göra det den ska men ser inget annat i kontot.
 
 ## Reflektion
 
-**[FYLL I]**
+Det jag tar med mig mest är skillnaden mellan att något fungerar och att det är rätt. Med AmazonS3ReadOnlyAccess kunde servern läsa från bucketen, så uppgiften såg klar ut. Men först när jag testade `aws s3 ls` märkte jag hur mycket mer den fick se än den behövde. Att skriva en egen policy tog inte lång tid, och efteråt syntes skillnaden direkt i felmeddelandena.
+
+Det var också nyttigt att testa det som inte ska gå, och inte bara det som ska gå. Att uppladdning och radering nekades visar att least privilege faktiskt gäller, och felmeddelandena säger exakt vilken rättighet som saknas.
+
+Det enda som strulade var SSH-timeouten, eftersom min IP hade ändrats sedan förra veckan. Det är bra att security group bara släpper in en adress, men det betyder att jag får uppdatera regeln varje gång jag sitter på ett nytt nätverk.
+
+Gruppen utveckling har fortfarande AmazonS3ReadOnlyAccess och kan alltså läsa alla buckets i kontot. Om jag skulle göra om det skulle jag ge gruppen en egen policy på samma sätt som webbservern.
